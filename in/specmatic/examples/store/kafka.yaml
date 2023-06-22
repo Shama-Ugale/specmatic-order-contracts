@@ -24,15 +24,16 @@ components:
       name: product
       title: An inventory product
       summary: Product representing items in inventory
-      type: object
       contentType: application/json
-      properties:
-        name:
-          description: Every product has a name
-          type: string
-        inventory:
-          description: Count of items in inventory
-          type: number
-        id:
-          description: Unique indentifier of the product
-          type: number
+      payload:
+        type: object
+        properties:
+          name:
+            description: Every product has a name
+            type: string
+          inventory:
+            description: Count of items in inventory
+            type: number
+          id:
+            description: Unique indentifier of the product
+            type: number
