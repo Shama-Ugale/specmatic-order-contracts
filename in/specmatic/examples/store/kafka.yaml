@@ -30,7 +30,7 @@ components:
           contentType: text/plain
           payload:
             type: string
-        type:
+        type1:
           name: type
           title: Type of the product
           summary: A product type helps in inventory management
