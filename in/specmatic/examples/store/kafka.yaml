@@ -7,7 +7,7 @@ servers:
     url: tcp://localhost:61616
     protocol: kafka
 channels:
-  test-topic:
+  product-queries:
     publish:
       operationId: publishObjectMessage
       message:
@@ -17,29 +17,35 @@ channels:
               type: string
             bindingVersion: '0.4.0'
         payload:
-          $ref: "#/components/messages/User"
-
+          $ref: "#/components/messages/Product"
 components:
   messages:
     User:
       Name:
         name: Name
-        title: Name of the user
-        summary: Every user has a name
+        title: Name of the product
+        summary: Every product has a name
         contentType: text/plain
         payload:
           type: string
-      Country:
-        name: Country
-        title: Country of the user
-        summary: Country where the user resides in
+      Type:
+        name: Type
+        title: Type of the product
+        summary: A product type helps in inventory management
         contentType: text/plain
         payload:
           type: string
-      Email:
-        name: Email
-        title: Email id
-        summary: Email id where the user can be reached at
+      Inventory:
+        name: Inventory
+        title: Inventory count
+        summary: Count of items in inventory
         contentType: text/plain
         payload:
-          type: string
+          type: number
+      Id:
+        name: Id
+        title: Product Indentifier
+        summary: Unique indentifier of the product
+        contentType: text/plain
+        payload:
+          type: number
