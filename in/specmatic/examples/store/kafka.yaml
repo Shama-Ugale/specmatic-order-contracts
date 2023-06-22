@@ -17,33 +17,33 @@ channels:
               type: string
             bindingVersion: '0.4.0'
         payload:
-          $ref: "#/components/messages/Product"
+          $ref: "#/components/messages/product"
 components:
   messages:
-    User:
-      Name:
+    product:
+      name:
         name: Name
         title: Name of the product
         summary: Every product has a name
         contentType: text/plain
         payload:
           type: string
-      Type:
-        name: Type
+      type:
+        name: type
         title: Type of the product
         summary: A product type helps in inventory management
         contentType: text/plain
         payload:
           type: string
-      Inventory:
-        name: Inventory
+      inventory:
+        name: inventory
         title: Inventory count
         summary: Count of items in inventory
         contentType: text/plain
         payload:
           type: number
-      Id:
-        name: Id
+      id:
+        name: id
         title: Product Indentifier
         summary: Unique indentifier of the product
         contentType: text/plain
