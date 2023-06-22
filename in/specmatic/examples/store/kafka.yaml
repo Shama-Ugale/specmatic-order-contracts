@@ -21,31 +21,33 @@ channels:
 components:
   messages:
     product:
-      name:
-        name: Name
-        title: Name of the product
-        summary: Every product has a name
-        contentType: text/plain
-        payload:
-          type: string
-      type:
-        name: type
-        title: Type of the product
-        summary: A product type helps in inventory management
-        contentType: text/plain
-        payload:
-          type: string
-      inventory:
-        name: inventory
-        title: Inventory count
-        summary: Count of items in inventory
-        contentType: text/plain
-        payload:
-          type: number
-      id:
-        name: id
-        title: Product Indentifier
-        summary: Unique indentifier of the product
-        contentType: text/plain
-        payload:
-          type: number
+      type: object
+      properties:
+        name:
+          name: Name
+          title: Name of the product
+          summary: Every product has a name
+          contentType: text/plain
+          payload:
+            type: string
+        type:
+          name: type
+          title: Type of the product
+          summary: A product type helps in inventory management
+          contentType: text/plain
+          payload:
+            type: string
+        inventory:
+          name: inventory
+          title: Inventory count
+          summary: Count of items in inventory
+          contentType: text/plain
+          payload:
+            type: number
+        id:
+          name: id
+          title: Product Indentifier
+          summary: Unique indentifier of the product
+          contentType: text/plain
+          payload:
+            type: number
