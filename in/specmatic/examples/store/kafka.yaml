@@ -3,7 +3,7 @@ info:
   title: Kafka Queue Example
   version: '1.0.0'
 servers:
-  kafka-dev:
+  activemq:
     url: tcp://localhost:61616
     protocol: kafka
 channels:
@@ -17,14 +17,29 @@ channels:
               type: string
             bindingVersion: '0.4.0'
         payload:
-          $ref: "#/components/messages/Email"
+          $ref: "#/components/messages/User"
 
 components:
   messages:
-    Email:
-      name: Email
-      title: Email id to process
-      summary: Inform about a new email in the system
-      contentType: text/plain
-      payload:
-        type: string
+    User:
+      Name:
+        name: Name
+        title: Name of the user
+        summary: Every user has a name
+        contentType: text/plain
+        payload:
+          type: string
+      Country:
+        name: Country
+        title: Country of the user
+        summary: Country where the user resides in
+        contentType: text/plain
+        payload:
+          type: string
+      Email:
+        name: Email
+        title: Email id
+        summary: Email id where the user can be reached at
+        contentType: text/plain
+        payload:
+          type: string
