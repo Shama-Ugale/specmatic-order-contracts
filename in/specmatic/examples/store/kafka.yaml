@@ -30,9 +30,6 @@ components:
         name:
           description: Every product has a name
           type: string
-        type:
-          description: A product type helps in inventory management
-          type: string
         inventory:
           description: Count of items in inventory
           type: number
