@@ -3,7 +3,7 @@ info:
   title: Kafka Queue Example
   version: '1.0.0'
 servers:
-  activemq:
+  kafka-dev:
     url: tcp://localhost:61616
     protocol: kafka
 channels:
