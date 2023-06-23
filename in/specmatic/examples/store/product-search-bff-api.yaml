@@ -14,7 +14,7 @@ paths:
         required: true
         examples:
           GET_DETAILS:
-            value: 'test'
+            value: 'gadget'
     get:
       summary: Fetch product details
       tags: []
@@ -53,3 +53,24 @@ components:
         - id
         - type
         - inventory
+    Order:
+      title: Order Details
+      type: object
+      properties:
+        productid:
+          type: integer
+        count:
+          type: integer
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+      required:
+        - productid
+        - count
+        - status
+    OrderStatus:
+      type: string
+      title: OrderStatus
+      enum:
+        - fulfilled
+        - pending
+        - cancelled
