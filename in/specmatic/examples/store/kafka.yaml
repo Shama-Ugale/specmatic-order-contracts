@@ -33,7 +33,7 @@ components:
             type: string
           inventory:
             description: Count of items in inventory
-            type: number
+            type: integer
           id:
             description: Unique indentifier of the product
-            type: number
+            type: integer
