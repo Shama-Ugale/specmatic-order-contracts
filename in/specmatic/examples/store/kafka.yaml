@@ -37,3 +37,18 @@ components:
           id:
             description: Unique indentifier of the product
             type: integer
+          categories:
+            description: A list of product categories
+            type: array
+            items:
+              $ref: "#/components/schemas/category"
+  schemas:
+    category:
+      type: object
+      properties:
+        id:
+           description: The id of the category
+           type: integer
+        name:
+          description: The name of the category
+          type: string
