@@ -27,6 +27,7 @@ jobs:
         with:
           files: |
             in/**/*.yaml
+          files_ignore: kafka.yaml #skipping it as async is under private-beta
       
       - name: Install Spectral Linter
         if: steps.changed-files-specific.outputs.any_changed == 'true'
