@@ -13,9 +13,6 @@ channels:
       message:
         payload:
           $ref: "#/components/messages/product"
-    bindings:
-      amqp:
-        is: queue
 components:
   messages:
     product:
