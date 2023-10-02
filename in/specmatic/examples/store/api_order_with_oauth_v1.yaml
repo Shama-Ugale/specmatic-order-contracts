@@ -599,6 +599,8 @@ components:
         authorizationCode:
           authorizationUrl: http://localhost:8083/realms/specmatic/protocol/openid-connect/auth
           tokenUrl: http://localhost:8083/realms/specmatic/protocol/openid-connect/token
+          scopes:
+            email: email
 
 security:
   - oAuth2AuthCode: []
