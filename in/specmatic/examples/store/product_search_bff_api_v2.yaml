@@ -11,6 +11,7 @@ paths:
             type: number
         name: storeId
         in: path
+        required: true
         examples:
           GET_DETAILS:
             value: 123
