@@ -5,6 +5,69 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
+  '/users':
+    post:
+      summary: Create a new user
+      operationId: create-user
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      summary: Get a list of users
+      operationId: get-users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  '/users/{id}':
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get a specific user by ID
+      operationId: get-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+    put:
+      summary: Update a user by ID
+      operationId: update-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+    delete:
+      summary: Delete a user by ID
+      operationId: delete-user
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
   '/products/{id}':
     parameters:
       - schema:
@@ -30,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './common.yaml#/components/schemas/Product'
+                $ref: '#/components/schemas/Product'
               examples:
                 GET_DETAILS:
                   value:
@@ -118,7 +181,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './common.yaml#/components/schemas/Product'
+              $ref: '#/components/schemas/Product'
             examples:
               UPDATE_DETAILS:
                 value:
@@ -170,7 +233,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './common.yaml#/components/schemas/ProductId'
+                $ref: '#/components/schemas/ProductId'
               examples:
                 ADD_PRODUCT:
                   value:
@@ -196,7 +259,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './common.yaml#/components/schemas/ProductDetails'
+              $ref: '#/components/schemas/ProductDetails'
             examples:
               ADD_PRODUCT:
                 value:
@@ -214,7 +277,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './common.yaml#/components/schemas/Product'
+                  $ref: '#/components/schemas/Product'
               examples:
                 SEARCH_1:
                   value:
@@ -289,7 +352,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './common.yaml#/components/schemas/OrderId'
+                $ref: '#/components/schemas/OrderId'
               examples:
                 200_OK:
                   value:
@@ -315,7 +378,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './common.yaml#/components/schemas/OrderDetails'
+              $ref: '#/components/schemas/OrderDetails'
             examples:
               200_OK:
                 value:
@@ -333,7 +396,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './common.yaml#/components/schemas/Order'
+                  $ref: '#/components/schemas/Order'
               examples:
                 200_OK:
                   value:
@@ -395,7 +458,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './common.yaml#/components/schemas/Order'
+                $ref: '#/components/schemas/Order'
               examples:
                 DETAILS:
                   value:
@@ -480,7 +543,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './common.yaml#/components/schemas/Order'
+              $ref: '#/components/schemas/Order'
             examples:
               UPDATE_ORDER:
                 value:
@@ -521,6 +584,99 @@ paths:
                   path:
                     type: string
 components:
+  schemas:
+    ProductDetails:
+      title: Product Details
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/ProductType'
+        inventory:
+          type: integer
+      required:
+        - name
+        - type
+        - inventory
+    ProductType:
+      type: string
+      title: Product Type
+      enum:
+        - book
+        - food
+        - gadget
+        - other
+    ProductId:
+      title: Product Id
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+        - id
+    Product:
+      title: Product
+      allOf:
+        - $ref: '#/components/schemas/ProductId'
+        - $ref: '#/components/schemas/ProductDetails'
+    OrderDetails:
+      title: Order Details
+      type: object
+      properties:
+        productid:
+          type: integer
+        count:
+          type: integer
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+      required:
+        - productid
+        - count
+        - status
+    OrderStatus:
+      type: string
+      title: OrderStatus
+      enum:
+        - fulfilled
+        - pending
+        - cancelled
+    OrderId:
+      title: Order Id
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+        - id
+    Order:
+      title: Order
+      allOf:
+        - $ref: '#/components/schemas/OrderId'
+        - $ref: '#/components/schemas/OrderDetails'
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+          minLength: 8
+          maxLength: 250
+
+  parameters:
+    OrderStatusParam:
+      name: OrderStatusParam
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - fulfilled
+          - pending
+          - cancelled
+
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
