@@ -25,7 +25,7 @@ paths:
           required: true
           schema:
             type: string
-            format: email  # Specifies 'email' as an email format attribute
+            format: email
       responses:
         '200':
           description: OK
@@ -35,6 +35,36 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: A description of the error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Unauthorized request
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: User not found
 
   '/users/{id}':
     parameters:
@@ -55,6 +85,14 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: User not found
     put:
       summary: Update a user by ID
       operationId: update-user
